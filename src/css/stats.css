@@ -1,0 +1,33 @@
+.stats {
+    opacity: 0.9;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 999;
+}
+
+.stats .panel {
+    padding: 0 0 3px 3px;
+    text-align: left;
+    display: block;
+}
+
+.stats .panel .text {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+.stats .panel .graph span {
+    width: 1px;
+    float: left;
+    opacity: 0.9;
+}
+
+canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+}
