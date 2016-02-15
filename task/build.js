@@ -5,8 +5,7 @@ var webpack = require('webpack');
 var config = {
     entry: './src/js/index',
     externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
+        'three': 'THREE'
     },
     output: {
         path: path.join(__dirname, '../build'),
@@ -29,12 +28,12 @@ var config = {
             test: /\.js$/,
             loader: 'babel',
             query: {
-                presets: ['es2015', 'react']
+                presets: ['es2015']
             },
             include: path.join(__dirname, '../src'),
             exclude: ['node_modules']
         }, {
-            test: /\.less$/, loader: "style-loader!css-loader!less-loader",
+            test: /\.css$/, loader: "style-loader!css-loader",
             include: path.join(__dirname, '../src'),
             exclude: ['node_modules']
         }]
@@ -50,33 +49,5 @@ webpack(config, function (err, stats) {
         });
     } else {
         console.info('==> JS build success!');
-    }
-});
-
-var fs = require('fs');
-var less = require('less');
-
-less.render('@import "default.less";', {
-    paths: [path.join(__dirname, '../src/less')],  // Specify search paths for @import directives
-    filename: 'style.less', // Specify a filename, for better error messages
-    compress: true          // Minify CSS output
-}, function (e, output) {
-    if (e) {
-        console.error(e.message);
-    } else {
-        var buildPath = path.join(__dirname, '../build');
-        if (!fs.existsSync(buildPath)) {
-            fs.mkdirSync(buildPath);
-        } else {
-            var info = fs.statSync(buildPath);
-            if (!info.isDirectory()) {
-                fs.unlinkSync(buildPath);
-                fs.mkdirSync(buildPath);
-            }
-        }
-        fs.writeFile(path.join(__dirname, '../build/style.css'), output.css, {flag: 'w+'}, function (err) {
-            if (err) throw err;
-            console.info('==> CSS build success!');
-        });
     }
 });

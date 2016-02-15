@@ -7,10 +7,6 @@ var config = {
     entry: {
         vendor: [
             'three',
-            'react',
-            'react-dom',
-            'react-hot-api',
-            'react-hot-loader',
             'webpack-dev-server/client?http://localhost:' + port,
             'webpack/hot/only-dev-server'
         ],
@@ -38,14 +34,9 @@ var config = {
             exclude: ['node_modules']
         }, {
             test: /\.js$/,
-            loader: 'react-hot',
-            include: path.join(__dirname, '../src'),
-            exclude: ['node_modules']
-        }, {
-            test: /\.js$/,
             loader: 'babel',
             query: {
-                presets: ['es2015', 'react']
+                presets: ['es2015']
             },
             include: path.join(__dirname, '../src'),
             exclude: ['node_modules']
